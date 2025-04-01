@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica las Tablas de Multiplicar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fce4ec;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .exercise {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        input {
+            font-size: 20px;
+            padding: 5px;
+            width: 100px;
+            text-align: center;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .message {
+            font-size: 22px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Practica las Tablas de Multiplicar</h1>
+        <p class="exercise" id="exercise"></p>
+        <input type="number" id="answer" placeholder="Tu respuesta">
+        <button onclick="checkAnswer()">Verificar</button>
+        <p class="message" id="message"></p>
+    </div>
+
+    <script>
+        let num1, num2, correctAnswer;
+        const animals = ["🐶", "🐱", "🐰", "🐵", "🐷", "🦁", "🐸", "🐼", "🐨", "🐧"];
+
+        function generateExercise() {
+            num1 = Math.floor(Math.random() * 10) + 1;
+            num2 = Math.floor(Math.random() * 10) + 1;
+            correctAnswer = num1 * num2;
+            let animal = animals[Math.floor(Math.random() * animals.length)];
+            document.getElementById("exercise").textContent = `${animal} ¿Cuánto es ${num1} × ${num2}?`;
+            document.getElementById("message").textContent = "";
+            document.getElementById("answer").value = "";
+        }
+
+        function checkAnswer() {
+            let userAnswer = parseInt(document.getElementById("answer").value);
+            let message = document.getElementById("message");
+            if (userAnswer === correctAnswer) {
+                message.textContent = "¡Correcto! 🎉";
+                message.style.color = "green";
+            } else {
+                message.textContent = "Inténtalo de nuevo ❌";
+                message.style.color = "red";
+            }
+            setTimeout(generateExercise, 2000);
+        }
+
+        window.onload = generateExercise;
+    </script>
+</body>
+</html>
